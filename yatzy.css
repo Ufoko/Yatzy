@@ -1,0 +1,110 @@
+@import 'https://fonts.googleapis.com/css?family=Open+Sans';
+
+body {
+  /* background: linear-gradient(90deg, rgb(243, 118, 224) 0%, rgb(255, 115, 0) 100%);
+  /* color: white; */
+  /*font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; */
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+	line-height: 1.75em;
+	font-size: 16px;
+	background-color: #222;
+	color: #aaa;
+  margin: 0; 
+  height: 100%; 
+  overflow: hidden;
+}
+
+h1 {
+  font-size: 80px;
+}
+
+#turn-indicator {
+  font-size: 45px;
+  margin-bottom: 0px;
+}
+
+#turn,#result,#combinations {
+  width: 50vw;
+  min-height: 25vh;
+}
+
+#combinations {
+  min-height: 60vh;
+}
+
+#turn {
+  text-align: center;
+}
+
+#outer {
+  flex-direction: row;
+}
+
+.flex-grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  vertical-align: middle;
+  align-items: center;
+  font-size: 56px;
+  padding: 20px;
+  text-align: left;
+}
+
+.die {
+  filter: invert(0.8);
+}
+
+.die:hover {
+  filter: invert(0.7);
+}
+
+.col {
+  width: 80%;
+  margin: 20px;
+  border-radius: 20px;
+  flex: 1;
+  background: transparent;
+  border: 1px white;
+  border-style: solid;
+  width: 50vw;
+  padding: 20px;
+  box-shadow: 5px 10px rgb(49, 49, 49);
+}
+
+#dice {
+  flex-direction: row;
+}
+
+.die {
+  width: 100px;
+}
+
+.die-button-not-clicked {
+  max-width: 100px;
+  max-width: 100px;
+  margin: 20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border: none;
+  cursor: pointer;
+  appearance: none;
+  background-color: inherit;
+}
+
+.die-button-clicked {
+  border: 5px, red;
+}
+
+#roll {
+  width: 120px;
+  height: 100px;
+  font-size: x-large;
+}
+
+#roll-div {
+  text-align: right;
+  margin-right: 40px;
+  margin-bottom: 40px;
+}
