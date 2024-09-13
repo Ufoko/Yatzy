@@ -35,7 +35,7 @@ function holdDie(dieIndex) {
  */
 function rollDice() {
     for (const die of diceArray) {
-        if (die.hold == true) {
+        if (die.hold != true) {
             die.value = Math.floor(Math.random * 6)
         }
     }
