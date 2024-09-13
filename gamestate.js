@@ -1,5 +1,4 @@
 
-let bonusSum = 0
 
 let results = []
 
@@ -32,4 +31,12 @@ function totalScore(){
         totalScore += result.value
     }
     return totalScore
+}
+
+function bonus(){
+    let singlesScore = 0
+    for (let index = 0; index < 6; index++) {
+       singlesScore += results[index].value
+    }
+    return singlesScore >= 63 ? 50 : 0
 }
