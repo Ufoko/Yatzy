@@ -3,19 +3,18 @@ let diceArray = []
  * 
  * @returns the dice array
  */
-function getDice() {
+export function getDice() {
     return diceArray
 }
 
-export { createDice }
 /**
  * creates 6 die
  */
-function createDice() {
+export function createDice() {
     for (let index = 0; index < 5; index++) {
         const newDie = new Object()
-        die.value = 0
-        die.hold = false
+        newDie.value = 0
+        newDie.hold = false
         diceArray[index] = newDie
     }
 }
@@ -25,7 +24,7 @@ function createDice() {
  * @param {the die to hold or unhold} die 
  * @returns the state of the die
  */
-function holdDie(dieIndex) {
+export function holdDie(dieIndex) {
     diceArray[dieIndex].hold = !diceArray[dieIndex].hold
     return diceArray[dieIndex].hold
 }
@@ -33,10 +32,10 @@ function holdDie(dieIndex) {
 /**
  * rolls all die which are not held
  */
-function rollDice() {
+export function rollDice() {
     for (const die of diceArray) {
         if (die.hold != true) {
-            die.value = Math.floor(Math.random * 6)
+            die.value = Math.floor(Math.random() * 6)
         }
     }
 }
