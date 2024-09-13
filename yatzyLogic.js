@@ -12,7 +12,7 @@ export { createDice }
  * creates 6 die
  */
 function createDice() {
-    for (let index = 0; index < 6; index++) {
+    for (let index = 0; index < 5; index++) {
         const newDie = new Object()
         die.value = 0
         die.hold = false
@@ -25,9 +25,9 @@ function createDice() {
  * @param {the die to hold or unhold} die 
  * @returns the state of the die
  */
-function holdDie(die) {
-    die.hold = !die.hold;
-    return die.hold
+function holdDie(dieIndex) {
+    diceArray[dieIndex].hold = !diceArray[dieIndex].hold
+    return diceArray[dieIndex].hold
 }
 
 /**
