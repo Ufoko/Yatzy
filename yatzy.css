@@ -81,6 +81,26 @@ h1 {
   width: 100px;
 }
 
+#roll {
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 13px 23px;
+  border: 1px solid #222222;
+  transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+  background: #fff;
+  color: #222222;
+}
+
+#roll:hover {
+  border-color: #000000;
+  background: #d7d7d7;
+}
+
 .die-button-not-clicked {
   max-width: 100px;
   max-width: 100px;
@@ -95,12 +115,6 @@ h1 {
 
 .die-button-clicked {
   border: 5px, red;
-}
-
-#roll {
-  width: 120px;
-  height: 100px;
-  font-size: x-large;
 }
 
 #roll-div {

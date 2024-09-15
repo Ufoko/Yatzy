@@ -33,11 +33,10 @@ const rollButton = document.querySelector("#roll")
 rollButton.onclick = () => rollTheDice()
 
 function rollTheDice() {
-    alert('Hej')
     rollDice()
     let dieArray = getDice()
     for (let i = 0; i < dieArray.length; i++) {
-        let dieString = '<img id="die' + i + '" class="die" src="img\\dice-' + dieArray[i].value + '.svg" alt="dice' + dieArray[i].value + '"></img>'
+        let dieString = '<img id="die' + i + '" class="die" src="img\\dice-' + (dieArray[i].value + 1) + '.svg" alt="dice' + (dieArray[i].value + 1) + '"></img>'
         let dieImage = document.querySelector("#die" + i)
         dieImage.outerHTML = dieString
     }
