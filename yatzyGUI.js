@@ -48,11 +48,12 @@ function rollTheDice() {
 const combinationDiv = document.getElementById('combinations')
 
 
-
-let combinations = ''
+/* TODO Eventuelt smid det ud i to seperate koloner, så der er plads på mindre skærme. Eller reducer størrelse af både knapperne og teksten*/
+let combinations = '<table>';
 for (let i = 0; i < options.length; i++) {
-    combinations += '<tr><td>' + options[i] + '</td><td>' + '<button id="' + i + '">' + '</button>' + '</td></tr>'
+    combinations += '<tr><td>' + options[i] + ': </td><td>' + '<button id="button' + i + '" class="result-button"> </button> </td></tr>'
 }
+combinations += "</table>";
 combinationDiv.innerHTML = combinations
 
 function updateDices() {

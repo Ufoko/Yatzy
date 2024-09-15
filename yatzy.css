@@ -1,44 +1,48 @@
 @import 'https://fonts.googleapis.com/css?family=Open+Sans';
 
 body {
-  /* background: linear-gradient(90deg, rgb(243, 118, 224) 0%, rgb(255, 115, 0) 100%);
-  /* color: white; */
-  /*font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; */
   font-family: 'Open Sans', sans-serif;
   text-align: center;
 	line-height: 1.75em;
 	font-size: 16px;
 	background-color: #222;
 	color: #aaa;
-  margin: 0; 
+  margin: 20px; 
   height: 100%; 
   overflow: hidden;
 }
 
 h1 {
   font-size: 80px;
+  text-shadow: 10px 10px 20px #000000;
 }
 
 #turn-indicator {
   font-size: 45px;
-  margin-bottom: 0px;
+  margin-bottom: 20px;
 }
 
-#turn,#result,#combinations {
-  width: 50vw;
-  min-height: 25vh;
-}
-
-#combinations {
-  min-height: 60vh;
+#combinations, #left {
+  height: 75vh;
+  font-size: 2vh;
 }
 
 #turn {
   text-align: center;
+  min-height: 30%;
+  margin-bottom: 20px;
+}
+
+#result {
+  min-height: 60%;
 }
 
 #outer {
   flex-direction: row;
+  background-color: #292929;
+  border-radius: 40px;
+  box-shadow: #aaa;
+  box-shadow: inset 2px 3px 5px #000000, 0px 1px 1px #333;
 }
 
 .flex-grid {
@@ -48,7 +52,7 @@ h1 {
   vertical-align: middle;
   align-items: center;
   font-size: 56px;
-  padding: 20px;
+  padding: 30px;
   text-align: left;
 }
 
@@ -62,15 +66,15 @@ h1 {
 
 .col {
   width: 80%;
-  margin: 20px;
   border-radius: 20px;
   flex: 1;
   background: transparent;
-  border: 1px white;
+  border: 1px rgb(117, 117, 117);
   border-style: solid;
   width: 50vw;
-  padding: 20px;
-  box-shadow: 5px 10px rgb(49, 49, 49);
+  padding-left: 20px;
+  padding-top: 20px;
+  box-shadow: 10px 10px 50px #000000;
 }
 
 #dice {
@@ -121,4 +125,11 @@ h1 {
   text-align: right;
   margin-right: 40px;
   margin-bottom: 40px;
+}
+
+
+.result-button {
+  min-width: 20vh;
+  min-height: 2.8vh;
+  margin: 10px;
 }
