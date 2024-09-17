@@ -31,7 +31,7 @@ export function createDice() {
  */
 export function holdDie(dieIndex) {
     diceArray[dieIndex].hold = !diceArray[dieIndex].hold
-    return diceArray[dieIndex].hold
+    return diceArray[dieIndex].hold;
 }
 
 /**
@@ -138,7 +138,9 @@ export function smallStraightScore() {
  */
 export function checkInARow(inARow) {
     let straightPossible = false
-    let sortedDice = Array.from(new set(diceArray.slice.sort((a, b) => a - b)))
+    let sortedDice = Array.from(new set (diceArray)).sort((a, b) => a - b)
+    // let sortedDice = Array.from(new set(diceArray.slice().sort((a, b) => a - b)))
+    alert("hello")
     let consecutives = 1
     for (let index = 1; index < diceArray.length; index++) {
         if (diceArray[index] - diceArray[index - 1] === 1) {

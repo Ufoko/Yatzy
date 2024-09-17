@@ -1,4 +1,4 @@
-import { chanceScore, findMathingEyes, fourOfAKindScore, fullHouseScore, largeStraightScore, smallStraightScore, threeOfAKindScore, twoPairScore, upperSectionScore, yatzyScore } from "./yatzyLogic"
+import { chanceScore, fourOfAKindScore, fullHouseScore, largeStraightScore, onePairScore, smallStraightScore, threeOfAKindScore, twoPairScore, upperSectionScore, yatzyScore } from "./yatzyLogic.js"
 
 
 export let results = []
@@ -13,7 +13,7 @@ export function getResults() {
     /* Kører de første 6 igennem, for at checke hvor mange af de individuelle der er ens*/
     for (let index = 0; index < 6; index++) {
         const element = results[index];
-        element.value = (element.taken) ? element.value : upperSectionScore(i + 1);
+        element.value = (element.taken) ? element.value : upperSectionScore(index + 1);
     }
     results[6].value = (results[6].taken) ? results[6].value : onePairScore() 
     results[7].value = (results[7].taken) ? results[7].value : twoPairScore() 
@@ -21,13 +21,14 @@ export function getResults() {
     results[9].value = (results[9].taken) ? results[9].value : fourOfAKindScore() 
     results[10].value = (results[10].taken) ? results[10].value : fullHouseScore() 
     results[11].value = (results[11].taken) ? results[11].value : smallStraightScore() 
+    alert("hallo")
     results[12].value = (results[12].taken) ? results[12].value : largeStraightScore() 
     results[13].value = (results[13].taken) ? results[13].value : chanceScore() 
     results[14].value = (results[14].taken) ? results[14].value : yatzyScore() 
     return results;
 }
 
-function startUp() {
+export function startUp() {
     for (let index = 0; index < 15; index++) {
         const result = new Object()
         result.value = 0;

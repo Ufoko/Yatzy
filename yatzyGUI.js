@@ -1,4 +1,4 @@
-import { getResults, results } from './gamestate.js'
+import { getResults, startUp } from './gamestate.js'
 import { createDice, holdDie, rollDice, getDice, getDieState } from './yatzyLogic.js'
 
 /**
@@ -12,6 +12,8 @@ let options = [
 
 createDice()
 setOnClick()
+
+startUp()
 
 function setOnClick() {
     /**
