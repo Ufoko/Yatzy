@@ -8,6 +8,8 @@ export function getDice() {
 }
 
 
+
+
 export function getDieState(number) {
     return diceArray[number].hold
 }
@@ -80,9 +82,14 @@ export function upperSectionScore(eyes) {
 function findMathingEyes(excludedPairSum, matchAmount) {
     let sumPair = 0
 
-    for (let index = 0; index < diceArray.length; index++) {
-        if (diceArray[index].value >= matchAmount && (index + 1) * matchAmount != excludedPairSum) {
-            sumPair = matchAmount * (diceArray[index].value)
+    let rolls = [0,0,0,0,0,0]
+    for (let die of diceArray) {
+        rolls[die.value -1] += 1
+    }
+
+    for (let index = 0; index < rolls.length; index++) {
+        if (rolls[index] >= matchAmount && (index +1) * matchAmount != excludedPairSum) {
+            sumPair = matchAmount * (index +1)
         }
     }
     return sumPair
