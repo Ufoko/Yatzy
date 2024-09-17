@@ -9,7 +9,7 @@ export function rollCount() {
     return rollsLeft
 }
 
-function getResults() {
+export function getResults() {
     /* Kører de første 6 igennem, for at checke hvor mange af de individuelle der er ens*/
     for (let index = 0; index < 6; index++) {
         const element = results[index];

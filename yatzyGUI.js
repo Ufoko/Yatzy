@@ -1,11 +1,11 @@
-import { results } from './gamestate.js'
+import { getResults, results } from './gamestate.js'
 import { createDice, holdDie, rollDice, getDice, getDieState } from './yatzyLogic.js'
 
 /**
  * List of options in the game
  */
 let options = [
-    "1-s", "2-s", "3-s", "5-s", "6-s", "Sum", "Bonus", "One Pair", "Two Pairs",
+    "1-s", "2-s", "3-s", "4-s", "5-s", "6-s", "Sum", "Bonus", "One Pair", "Two Pairs",
     "Three Same", "Four Same", "Full House",
     "Small Staight", "Large Straight", "Chance", "Yatzy"
 ]
@@ -50,6 +50,13 @@ function rollTheDice() {
 
 }
 
+function updateResults(){
+    let resultArray = getResults()
+    for (let index = 0; index < resultArray.length; index++) {
+        document.querySelector("#button" + index).innerHTML = resultArray[index]      
+    }
+}
+
 function holdDieGUI(number) {
     holdDie(number)
     let dieImage = document.querySelector("#die" + number)
@@ -64,7 +71,12 @@ const combinationDiv = document.getElementById('combinations')
 /* TODO Eventuelt smid det ud i to seperate koloner, så der er plads på mindre skærme. Eller reducer størrelse af både knapperne og teksten*/
 let combinations = '<table>';
 for (let i = 0; i < options.length; i++) {
-    combinations += '<tr><td>' + options[i] + ': </td><td>' + '<button id="button' + i + '" class="result-button"> </button> </td></tr>'
+    if (i == 5) {
+        combinations += '<tr><td>' + options[i] + ': </td><td>' + '<button id="button' + i +
+            '" class="result-button"> </button> </td><td>"Sum"</td><td><button id="buttonSum" class="result-button"></button></td><td>"Result"</td><td><button id="buttonResult" class="result-button"></button></td></tr>'
+    } else {
+        combinations += '<tr><td>' + options[i] + ': </td><td>' + '<button id="button' + i + '" class="result-button"> </button> </td></tr>'
+    }
 }
 combinations += "</table>";
 combinationDiv.innerHTML = combinations
