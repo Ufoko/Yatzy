@@ -61,7 +61,7 @@ function resetDice() {
  * @param {The eyes to calculate} eyes 
  * @returns 
  */
-function upperSectionScore(eyes) {
+export function upperSectionScore(eyes) {
     let counter = 0
     for (const die of diceArray) {
         if (die.value == eyes) {
@@ -92,14 +92,14 @@ function findMathingEyes(excludedPairSum, matchAmount) {
  * 
  * @returns returns the score for one pair
  */
-function onePairScore() {
+export function onePairScore() {
     return findMathingEyes(0, 2)
 }
 /**
  * 
  * @returns the score for two pairs
  */
-function twoPairScore() {
+export function twoPairScore() {
     let firstPair = findMathingEyes(0, 2)
     let secondPair = findMathingEyes(firstPair, 2)
     let twoPairScore = 0
@@ -112,14 +112,14 @@ function twoPairScore() {
  * 
  * @returns the score for three of a kind
  */
-function threeOfAKindScore() {
+export function threeOfAKindScore() {
     return findMathingEyes(0, 3)
 }
 /**
  * 
  * @returns the score for four of a kind
  */
-function fourOfAKindScore() {
+export function fourOfAKindScore() {
     return findMathingEyes(0, 4)
 }
 
@@ -127,7 +127,7 @@ function fourOfAKindScore() {
  * 
  * @returns the score for a small straight. 0 if no straight
  */
-function smallStraightScore() {
+export function smallStraightScore() {
    return checkInARow(4) ? 15 : 0
 }
 
@@ -136,7 +136,7 @@ function smallStraightScore() {
  * @param {how many in a row to check for} inARow 
  * @returns if there are that many in a row
  */
-function checkInARow(inARow) {
+export function checkInARow(inARow) {
     let straightPossible = false
     let sortedDice = Array.from(new set(diceArray.slice.sort((a, b) => a - b)))
     let consecutives = 1
@@ -154,12 +154,12 @@ function checkInARow(inARow) {
     return straightPossible
 }
 
-function largeStraightScore() {
+export function largeStraightScore() {
    return checkInARow ? 20 : 0
 }
 
 
-function fullHouseScore(){
+export function fullHouseScore(){
     let threeOfAkind = findMathingEyes(0,3)
     let excludeSum = (threeOfAKindScore * 2) / 3
     let twoOfAKind = findMathingEyes(excludeSum,2)
@@ -170,7 +170,7 @@ function fullHouseScore(){
     return totalSum;
 }
 
-function chanceScore(){
+export function chanceScore(){
     let chance = 0;
     for (const die of diceArray) {
         chanceScore += die.value
@@ -178,7 +178,7 @@ function chanceScore(){
     return chance
 }
 
-function yatzyScore(){
+export function yatzyScore(){
     return findMathingEyes(0,5) > 0 ? 50 : 0
 }
 

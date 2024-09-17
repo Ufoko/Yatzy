@@ -1,11 +1,30 @@
+import { chanceScore, findMathingEyes, fourOfAKindScore, fullHouseScore, largeStraightScore, smallStraightScore, threeOfAKindScore, twoPairScore, upperSectionScore, yatzyScore } from "./yatzyLogic"
 
 
 export let results = []
 let rollsLeft = 3
 
-export function rollCount(){
+export function rollCount() {
     rollsLeft--
     return rollsLeft
+}
+
+function getResults() {
+    /* Kører de første 6 igennem, for at checke hvor mange af de individuelle der er ens*/
+    for (let index = 0; index < 6; index++) {
+        const element = results[index];
+        element.value = (element.taken) ? element.value : upperSectionScore(i + 1);
+    }
+    results[6].value = (results[6].taken) ? results[6].value : onePairScore() 
+    results[7].value = (results[7].taken) ? results[7].value : twoPairScore() 
+    results[8].value = (results[8].taken) ? results[8].value : threeOfAKindScore() 
+    results[9].value = (results[9].taken) ? results[9].value : fourOfAKindScore() 
+    results[10].value = (results[10].taken) ? results[10].value : fullHouseScore() 
+    results[11].value = (results[11].taken) ? results[11].value : smallStraightScore() 
+    results[12].value = (results[12].taken) ? results[12].value : largeStraightScore() 
+    results[13].value = (results[13].taken) ? results[13].value : chanceScore() 
+    results[14].value = (results[14].taken) ? results[14].value : yatzyScore() 
+    return results;
 }
 
 function startUp() {
@@ -22,8 +41,8 @@ function startUp() {
  * @param {The score to save} score 
  * @returns true on success, false on failure (e.g the result was already taken)
  */
-function assignResult(index, score){
-    if(results[index].taken != true){
+function assignResult(index, score) {
+    if (results[index].taken != true) {
         return false
     }
     results[index].value = score
@@ -31,7 +50,7 @@ function assignResult(index, score){
     return true
 }
 
-function totalScore(){
+function totalScore() {
     let totalScore = 0
     for (const result of results) {
         totalScore += result.value
@@ -39,10 +58,10 @@ function totalScore(){
     return totalScore
 }
 
-function bonus(){
+function bonus() {
     let singlesScore = 0
     for (let index = 0; index < 6; index++) {
-       singlesScore += results[index].value
+        singlesScore += results[index].value
     }
     return singlesScore >= 63 ? 50 : 0
 }
