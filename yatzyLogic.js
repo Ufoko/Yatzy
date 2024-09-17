@@ -7,6 +7,10 @@ export function getDice() {
     return diceArray
 }
 
+export function getDieState(number) {
+    return diceArray[number].hold
+}
+
 /**
  * creates 6 die
  */
@@ -43,7 +47,6 @@ export function rollDice() {
  * resets all dice to unhold
  */
 function resetDice() {
-
     for (const die of diceArray) {
         die.hold = false
     }
