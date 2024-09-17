@@ -168,10 +168,10 @@ export function largeStraightScore() {
 
 export function fullHouseScore(){
     let threeOfAkind = findMathingEyes(0,3)
-    let excludeSum = (threeOfAKindScore * 2) / 3
+    let excludeSum = (threeOfAkind * 2) / 3
     let twoOfAKind = findMathingEyes(excludeSum,2)
     let totalSum = 0
-    if(threeOfAKindScore != 0 && twoOfAKind != 0){
+    if(threeOfAkind != 0 && twoOfAKind != 0){
         totalSum = threeOfAkind + twoOfAKind
     }
     return totalSum;

@@ -104,11 +104,16 @@ img {
   transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
   background: #fff;
   color: #222222;
+  margin-left: 20px;
 }
 
 #roll:hover {
   border-color: #000000;
   background: #d7d7d7;
+}
+
+#roll:disabled {
+  background: #363636;
 }
 
 .die-button-not-clicked, .die-button-clicked {
@@ -129,9 +134,16 @@ img {
   margin-bottom: 40px;
 }
 
+td {
+  min-width: 120px;
+}
+
+tr {
+  height: 10px;
+  margin: 0px;
+}
 
 .result-button {
-  min-width: 20vh;
   min-height: 2.8vh;
-  margin: 10px;
+  width: 10vb;
 }

@@ -3,10 +3,23 @@ import { chanceScore, fourOfAKindScore, fullHouseScore, largeStraightScore, oneP
 
 export let results = []
 let rollsLeft = 3
+let turnCounter = 1;
 
 export function rollCount() {
     rollsLeft--
     return rollsLeft
+}
+
+export function getNextTurn () {
+    return turnCounter++;
+}
+
+export function getNextCount () {
+    return rollsLeft--;
+}
+
+export function nextTurn () {
+    rollsLeft = 3;
 }
 
 export function getResults() {
