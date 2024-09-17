@@ -7,6 +7,7 @@ export function getDice() {
     return diceArray
 }
 
+
 export function getDieState(number) {
     return diceArray[number].hold
 }

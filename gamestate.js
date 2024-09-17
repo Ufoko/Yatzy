@@ -1,6 +1,12 @@
 
 
-let results = []
+export let results = []
+let rollsLeft = 3
+
+export function rollCount(){
+    rollsLeft--
+    return rollsLeft
+}
 
 function startUp() {
     for (let index = 0; index < 15; index++) {

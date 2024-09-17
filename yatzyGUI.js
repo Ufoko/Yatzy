@@ -1,3 +1,4 @@
+import { results } from './gamestate.js'
 import { createDice, holdDie, rollDice, getDice, getDieState } from './yatzyLogic.js'
 
 /**
@@ -45,6 +46,8 @@ function rollTheDice() {
         }
     }
     setOnClick()
+    updateResults()
+
 }
 
 function holdDieGUI(number) {
