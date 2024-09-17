@@ -3,7 +3,7 @@ import { chanceScore, fourOfAKindScore, fullHouseScore, largeStraightScore, oneP
 
 export let results = []
 let rollsLeft = 3
-let turnCounter = 1;
+let turnCounter = 0;
 
 export function rollCount() {
     rollsLeft--
@@ -11,7 +11,8 @@ export function rollCount() {
 }
 
 export function getNextTurn () {
-    return turnCounter++;
+    turnCounter++;
+    return turnCounter;
 }
 
 export function getNextCount () {
@@ -20,6 +21,14 @@ export function getNextCount () {
 
 export function nextTurn () {
     rollsLeft = 3;
+}
+
+export function takenThisRound () {
+    let takenCount = 0;
+    for (const element of results) {
+        takenCount += (element.taken) ? 1 : 0;
+    }
+    return takenCount == turnCounter;
 }
 
 export function getResults() {
@@ -51,14 +60,12 @@ export function startUp() {
 /**
  * Saves the given score in the index given if the given index is not already taken. 
  * @param {The index to put score into} index 
- * @param {The score to save} score 
  * @returns true on success, false on failure (e.g the result was already taken)
  */
-function assignResult(index, score) {
-    if (results[index].taken != true) {
+export function assignResult(index) {
+    if (results[index].taken == true) {
         return false
     }
-    results[index].value = score
     results[index].taken = true
     return true
 }
@@ -66,7 +73,7 @@ function assignResult(index, score) {
 export function totalScore() {
     let totalScore = 0
     for (const result of results) {
-        totalScore += result.value
+        totalScore += (result.taken) ? result.value : 0;
     }
     return totalScore
 }

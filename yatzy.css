@@ -147,3 +147,9 @@ tr {
   min-height: 2.8vh;
   width: 10vb;
 }
+
+.result-button-clicked {
+  min-height: 2.8vh;
+  width: 10vb;
+  background-color: rgb(169, 255, 205);
+}

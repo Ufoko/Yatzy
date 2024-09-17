@@ -1,4 +1,4 @@
-import { bonus, getNextCount, getNextTurn, getResults, nextTurn, startUp, sum, totalScore } from './gamestate.js'
+import { assignResult, bonus, getNextCount, getNextTurn, getResults, nextTurn, results, startUp, sum, takenThisRound, totalScore } from './gamestate.js'
 import { createDice, holdDie, rollDice, getDice, getDieState } from './yatzyLogic.js'
 
 /**
@@ -61,12 +61,19 @@ const roundButton = document.querySelector("#next-round")
 roundButton.onclick = () => newTurn()
 
 
+
 function newTurn() {
-    turnHeader.innerHTML = "Turn " + getNextTurn();
-    let rollsLeft = document.querySelector("#rolls-left");
-    rollsLeft.innerHTML = 3;
-    nextTurn();
-    rollButton.disabled = false;
+    if (takenThisRound()) {
+        turnHeader.innerHTML = "Turn " + getNextTurn();
+        let rollsLeft = document.querySelector("#rolls-left");
+        rollsLeft.innerHTML = 3;
+        nextTurn();
+        rollButton.disabled = false;
+        document.querySelector("#total").innerHTML = totalScore();
+
+    } else {
+        alert("DU SKAL VÆLGE NOGET DIT KVA")
+    }
 }
 
 function updateCount() {
@@ -98,23 +105,29 @@ function holdDieGUI(number) {
 
 const combinationDiv = document.getElementById('combinations')
 
-
 /* TODO Eventuelt smid det ud i to seperate koloner, så der er plads på mindre skærme. Eller reducer størrelse af både knapperne og teksten*/
 let combinations = '<table>';
 for (let i = 0; i < options.length; i++) {
+    combinations += '<tr><td>' + options[i] + ': </td><td>' + '<button id="button' + i + '"';
+    combinations += 'class="result-button">';
+    combinations += '</button>'
     if (i == 4) {
-        combinations += '<tr><td>' + options[i] + ': </td><td>' + '<button id="button' + i +
-            '" class="result-button"> </button> </td><td>Sum</td><td><button id="buttonSum" class="result-button"></button></td></tr>'
+        combinations += '</td><td>Sum</td><td><button id="buttonSum" class="result-button"></button></td></tr>'
     } else if (i == 5) {
-        combinations += '<tr><td>' + options[i] + ': </td><td>' + '<button id="button' + i +
-            '" class="result-button"> </button> </td><td>Bonus</td><td><button id="buttonBonus" class="result-button"></button></td></tr>'
-    }
-    else {
-        combinations += '<tr><td>' + options[i] + ': </td><td>' + '<button id="button' + i + '" class="result-button"> </button> </td></tr>'
+        combinations += '</td><td>Bonus</td><td><button id="buttonBonus" class="result-button"></button></td></tr>'
     }
 }
+
 combinations += "</table>";
 combinationDiv.innerHTML = combinations
+
+for (let i = 0; i < options.length; i++) {
+    let resultButton = document.querySelector('#button' + i);
+    resultButton.onclick = function () {
+        assignResult(i);
+        resultButton.className = "result-button-clicked";
+    }
+}
 
 function updateDices() {
     let diceArray = getDice()
