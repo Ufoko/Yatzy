@@ -97,10 +97,23 @@ newTurn()
 const roundButton = document.querySelector("#next-round")
 roundButton.onclick = () => newTurn()
 
-
+function allTaken() {
+    const resultArray = results
+    let allTakenBoolean = true
+    for (let index = 0; index < resultArray.length; index++) {
+        if (!resultArray[index].taken) {
+            allTakenBoolean = false
+        }
+        
+    }
+    return allTakenBoolean
+}
 
 function newTurn() {
-    if (takenThisRound()) {
+    if (allTaken()) {
+        let resultDiv = document.querySelector('#result')
+        resultDiv.innerHTML = "Game over. You got a score of: " + totalScore()
+    } else if (takenThisRound()) {
         turnHeader.innerHTML = "Turn " + getNextTurn();
         let rollsLeft = document.querySelector("#rolls-left");
         rollsLeft.innerHTML = 3;
