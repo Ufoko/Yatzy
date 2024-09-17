@@ -1,5 +1,5 @@
 import { assignResult, bonus, getNextCount, getNextTurn, getResults, nextTurn, results, startUp, sum, takenThisRound, totalScore } from './gamestate.js'
-import { createDice, holdDie, rollDice, getDice, getDieState } from './yatzyLogic.js'
+import { createDice, holdDie, rollDice, getDice, getDieState, resetDice } from './yatzyLogic.js'
 
 /**
  * List of options in the game
@@ -53,6 +53,43 @@ function rollTheDice() {
     updateCount()
 }
 
+const combinationDiv = document.getElementById('combinations')
+
+/* TODO Eventuelt smid det ud i to seperate koloner, så der er plads på mindre skærme. Eller reducer størrelse af både knapperne og teksten*/
+let combinations = '<table>';
+for (let i = 0; i < options.length; i++) {
+    combinations += '<tr><td>' + options[i] + ': </td><td>' + '<button id="button' + i + '"';
+    combinations += 'class="result-button">';
+    combinations += '</button>'
+    if (i == 4) {
+        combinations += '</td><td>Sum</td><td><button id="buttonSum" class="result-button"></button></td></tr>'
+    } else if (i == 5) {
+        combinations += '</td><td>Bonus</td><td><button id="buttonBonus" class="result-button"></button></td></tr>'
+    }
+}
+
+combinations += "</table>";
+combinationDiv.innerHTML = combinations
+
+for (let i = 0; i < options.length; i++) {
+    let resultButton = document.querySelector('#button' + i);
+    resultButton.onclick = function () {
+        let succeed = assignResult(i);
+        if (succeed) {
+            resultButton.className = "result-button-clicked";
+        }
+    }
+}
+
+function updateDices() {
+    let diceArray = getDice()
+    for (let i = 0; i < diceArray.length; i++) {
+        if (i == 1) {
+
+        }
+    }
+}
+
 const turnHeader = document.querySelector("h2")
 
 newTurn()
@@ -70,7 +107,8 @@ function newTurn() {
         nextTurn();
         rollButton.disabled = false;
         document.querySelector("#total").innerHTML = totalScore();
-
+        resetDice();
+        rollTheDice()
     } else {
         alert("DU SKAL VÆLGE NOGET DIT KVA")
     }
@@ -101,40 +139,3 @@ function holdDieGUI(number) {
     let newClass = (getDieState(number)) ? "die-clicked" : "die";
     dieImage.className = newClass;
 }
-
-
-const combinationDiv = document.getElementById('combinations')
-
-/* TODO Eventuelt smid det ud i to seperate koloner, så der er plads på mindre skærme. Eller reducer størrelse af både knapperne og teksten*/
-let combinations = '<table>';
-for (let i = 0; i < options.length; i++) {
-    combinations += '<tr><td>' + options[i] + ': </td><td>' + '<button id="button' + i + '"';
-    combinations += 'class="result-button">';
-    combinations += '</button>'
-    if (i == 4) {
-        combinations += '</td><td>Sum</td><td><button id="buttonSum" class="result-button"></button></td></tr>'
-    } else if (i == 5) {
-        combinations += '</td><td>Bonus</td><td><button id="buttonBonus" class="result-button"></button></td></tr>'
-    }
-}
-
-combinations += "</table>";
-combinationDiv.innerHTML = combinations
-
-for (let i = 0; i < options.length; i++) {
-    let resultButton = document.querySelector('#button' + i);
-    resultButton.onclick = function () {
-        assignResult(i);
-        resultButton.className = "result-button-clicked";
-    }
-}
-
-function updateDices() {
-    let diceArray = getDice()
-    for (let i = 0; i < diceArray.length; i++) {
-        if (i == 1) {
-
-        }
-    }
-}
-

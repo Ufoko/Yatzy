@@ -62,8 +62,9 @@ export function startUp() {
  * @param {The index to put score into} index 
  * @returns true on success, false on failure (e.g the result was already taken)
  */
+
 export function assignResult(index) {
-    if (results[index].taken == true) {
+    if (results[index].taken == true || takenThisRound()) {
         return false
     }
     results[index].taken = true
@@ -86,7 +87,7 @@ export function bonus() {
 export function sum() {
     let singlesScore = 0
     for (let index = 0; index < 6; index++) {
-        singlesScore += results[index].value
+        singlesScore += (results[index].taken) ? results[index].value : 0;
     }
     return singlesScore;
 }

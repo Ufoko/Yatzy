@@ -49,7 +49,7 @@ export function rollDice() {
 /**
  * resets all dice to unhold
  */
-function resetDice() {
+export function resetDice() {
     for (const die of diceArray) {
         die.hold = false
     }
