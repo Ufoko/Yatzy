@@ -40,7 +40,7 @@ export function holdDie(dieIndex) {
 export function rollDice() {
     for (const die of diceArray) {
         if (die.hold != true) {
-            die.value = Math.floor(Math.random() * 6)
+            die.value = Math.floor(Math.random() * 6 + 1)
         }
     }
 }
@@ -81,8 +81,8 @@ function findMathingEyes(excludedPairSum, matchAmount) {
     let sumPair = 0
 
     for (let index = 0; index < diceArray.length; index++) {
-        if (diceArray[index] >= matchAmount && (index + 1) * matchAmount != excludedPairSum) {
-            sumPair = matchAmount * (index + 1)
+        if (diceArray[index].value >= matchAmount && (index + 1) * matchAmount != excludedPairSum) {
+            sumPair = matchAmount * (diceArray[index].value)
         }
     }
     return sumPair
@@ -139,9 +139,7 @@ export function smallStraightScore() {
 export function checkInARow(inARow) {
     let straightPossible = false
     let sortedDice = Array.from(new Set (diceArray)).sort((a, b) => a - b)
-    // let sortedDice = Array.from(new set(diceArray.slice().sort((a, b) => a - b)))
-    alert("hello")
-    let consecutives = 1
+    let consecutives = 1;
     for (let index = 1; index < sortedDice.length; index++) {
         if (sortedDice[index] - sortedDice[index - 1] === 1) {
             consecutives++
@@ -157,7 +155,7 @@ export function checkInARow(inARow) {
 }
 
 export function largeStraightScore() {
-   return checkInARow ? 20 : 0
+   return checkInARow(5) ? 20 : 0
 }
 
 
@@ -175,7 +173,7 @@ export function fullHouseScore(){
 export function chanceScore(){
     let chance = 0;
     for (const die of diceArray) {
-        chanceScore += die.value
+        chance += die.value
     }
     return chance
 }

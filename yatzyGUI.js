@@ -1,14 +1,15 @@
-import { getResults, startUp } from './gamestate.js'
+import { bonus, getResults, startUp, sum, totalScore } from './gamestate.js'
 import { createDice, holdDie, rollDice, getDice, getDieState } from './yatzyLogic.js'
 
 /**
  * List of options in the game
  */
 let options = [
-    "1-s", "2-s", "3-s", "4-s", "5-s", "6-s", "Sum", "Bonus", "One Pair", "Two Pairs",
+    "1-s", "2-s", "3-s", "4-s", "5-s", "6-s", "One Pair", "Two Pairs",
     "Three Same", "Four Same", "Full House",
     "Small Staight", "Large Straight", "Chance", "Yatzy"
 ]
+
 
 createDice()
 setOnClick()
@@ -42,7 +43,7 @@ function rollTheDice() {
     let dieArray = getDice()
     for (let i = 0; i < dieArray.length; i++) {
         if (!getDieState(i)) {
-            let dieString = '<img id="die' + i + '" class="die" src="img\\dice-' + (dieArray[i].value + 1) + '.svg" alt="dice' + (dieArray[i].value + 1) + '"></img>'
+            let dieString = '<img id="die' + i + '" class="die" src="img\\dice-' + dieArray[i].value + '.svg" alt="dice' + (dieArray[i].value + 1) + '"></img>'
             let dieImage = document.querySelector("#die" + i)
             dieImage.outerHTML = dieString
         }
@@ -55,8 +56,11 @@ function rollTheDice() {
 function updateResults(){
     let resultArray = getResults()
     for (let index = 0; index < resultArray.length; index++) {
-        document.querySelector("#button" + index).innerHTML = resultArray[index]      
+        document.querySelector("#button" + index).innerHTML = resultArray[index].value      
     }
+    document.querySelector("#buttonSum").innerHTML = sum();   
+    document.querySelector("#buttonBonus").innerHTML = bonus()    
+
 }
 
 function holdDieGUI(number) {
@@ -75,7 +79,7 @@ let combinations = '<table>';
 for (let i = 0; i < options.length; i++) {
     if (i == 5) {
         combinations += '<tr><td>' + options[i] + ': </td><td>' + '<button id="button' + i +
-            '" class="result-button"> </button> </td><td>"Sum"</td><td><button id="buttonSum" class="result-button"></button></td><td>"Result"</td><td><button id="buttonResult" class="result-button"></button></td></tr>'
+            '" class="result-button"> </button> </td><td>Sum</td><td><button id="buttonSum" class="result-button"></button></td><td>Bonus</td><td><button id="buttonBonus" class="result-button"></button></td></tr>'
     } else {
         combinations += '<tr><td>' + options[i] + ': </td><td>' + '<button id="button' + i + '" class="result-button"> </button> </td></tr>'
     }

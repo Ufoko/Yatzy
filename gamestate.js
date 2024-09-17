@@ -21,7 +21,6 @@ export function getResults() {
     results[9].value = (results[9].taken) ? results[9].value : fourOfAKindScore() 
     results[10].value = (results[10].taken) ? results[10].value : fullHouseScore() 
     results[11].value = (results[11].taken) ? results[11].value : smallStraightScore() 
-    alert("hallo")
     results[12].value = (results[12].taken) ? results[12].value : largeStraightScore() 
     results[13].value = (results[13].taken) ? results[13].value : chanceScore() 
     results[14].value = (results[14].taken) ? results[14].value : yatzyScore() 
@@ -51,7 +50,7 @@ function assignResult(index, score) {
     return true
 }
 
-function totalScore() {
+export function totalScore() {
     let totalScore = 0
     for (const result of results) {
         totalScore += result.value
@@ -59,10 +58,15 @@ function totalScore() {
     return totalScore
 }
 
-function bonus() {
+export function bonus() {
+    let singlesScore = sum();
+    return singlesScore >= 63 ? 50 : 0
+}
+
+export function sum() {
     let singlesScore = 0
     for (let index = 0; index < 6; index++) {
         singlesScore += results[index].value
     }
-    return singlesScore >= 63 ? 50 : 0
+    return singlesScore;
 }
