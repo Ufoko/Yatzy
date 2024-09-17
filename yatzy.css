@@ -12,8 +12,13 @@ body {
   overflow: hidden;
 }
 
+h2 {
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
 h1 {
-  font-size: 80px;
+  font-size: 70px;
   text-shadow: 10px 10px 20px #000000;
 }
 
@@ -29,12 +34,12 @@ h1 {
 
 #turn {
   text-align: center;
-  min-height: 30%;
+  min-height: 50%;
   margin-bottom: 20px;
 }
 
 #result {
-  min-height: 60%;
+  min-height: 40%;
 }
 
 #outer {
@@ -56,12 +61,17 @@ h1 {
   text-align: left;
 }
 
-.die {
+img {
   filter: invert(0.8);
+  width: 100px;
 }
 
 .die:hover {
-  filter: invert(0.7);
+  filter: invert(0.65);
+}
+
+.die-clicked {
+  filter: invert(40%) sepia(98%) saturate(7056%) hue-rotate(349deg) brightness(85%) contrast(118%);
 }
 
 .col {
@@ -79,10 +89,6 @@ h1 {
 
 #dice {
   flex-direction: row;
-}
-
-.die {
-  width: 100px;
 }
 
 #roll {
@@ -105,7 +111,7 @@ h1 {
   background: #d7d7d7;
 }
 
-.die-button-not-clicked {
+.die-button-not-clicked, .die-button-clicked {
   max-width: 100px;
   max-width: 100px;
   margin: 20px;
@@ -115,10 +121,6 @@ h1 {
   cursor: pointer;
   appearance: none;
   background-color: inherit;
-}
-
-.die-button-clicked {
-  border: 5px, red;
 }
 
 #roll-div {
