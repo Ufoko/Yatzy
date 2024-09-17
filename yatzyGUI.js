@@ -77,10 +77,14 @@ const combinationDiv = document.getElementById('combinations')
 /* TODO Eventuelt smid det ud i to seperate koloner, så der er plads på mindre skærme. Eller reducer størrelse af både knapperne og teksten*/
 let combinations = '<table>';
 for (let i = 0; i < options.length; i++) {
-    if (i == 5) {
+    if (i == 4) {
         combinations += '<tr><td>' + options[i] + ': </td><td>' + '<button id="button' + i +
-            '" class="result-button"> </button> </td><td>Sum</td><td><button id="buttonSum" class="result-button"></button></td><td>Bonus</td><td><button id="buttonBonus" class="result-button"></button></td></tr>'
-    } else {
+            '" class="result-button"> </button> </td><td>Sum</td><td><button id="buttonSum" class="result-button"></button></td></tr>'
+    } else if (i == 5) {
+        combinations += '<tr><td>' + options[i] + ': </td><td>' + '<button id="button' + i +
+            '" class="result-button"> </button> </td><td>Bonus</td><td><button id="buttonBonus" class="result-button"></button></td></tr>' 
+    } 
+    else {
         combinations += '<tr><td>' + options[i] + ': </td><td>' + '<button id="button' + i + '" class="result-button"> </button> </td></tr>'
     }
 }
