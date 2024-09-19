@@ -1,7 +1,7 @@
 
 import { assert } from "chai"
-import { createDice, holdDie, resetDice, getDieState } from "../Yatzy/Yatzy/yatzyLogic.js"
-describe('Yatzy die state test', () => {
+import { createDice, holdDie, resetDice, getDieState ,rollDice, getDice} from "../Yatzy/Yatzy/yatzyLogic.js"
+describe('Yatzy die state', () => {
     before(() => {
         createDice();
         holdDie(0);
@@ -15,7 +15,7 @@ describe('Yatzy die state test', () => {
     it('should return false when die 2 is not held', () => {
         assert.equal(getDieState(2), false)
     });
-    describe('Resert die test', () => {
+    describe('', () => {
         before(() => {
             resetDice();
         });
@@ -29,4 +29,19 @@ describe('Yatzy die state test', () => {
 
 
     });
+});
+
+describe('Dice roll test', () => {
+        before(() => {
+            createDice();
+            rollDice();
+    });
+    it('', () => {
+        for (const die of getDice()) {
+         assert(die.value,!0)
+        }
+    });
+
+
+
 });
