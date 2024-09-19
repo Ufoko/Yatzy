@@ -23,12 +23,26 @@ export function nextTurn () {
     rollsLeft = 3;
 }
 
+
 export function takenThisRound () {
     let takenCount = 0;
     for (const element of results) {
         takenCount += (element.taken) ? 1 : 0;
     }
     return takenCount == turnCounter;
+}
+
+
+export function allTaken() {
+    const resultArray = results
+    let allTakenBoolean = true
+    for (let index = 0; index < resultArray.length; index++) {
+        if (!resultArray[index].taken) {
+            allTakenBoolean = false
+        }
+
+    }
+    return allTakenBoolean
 }
 
 export function getResults() {

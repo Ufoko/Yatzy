@@ -3,12 +3,12 @@
 body {
   font-family: 'Open Sans', sans-serif;
   text-align: center;
-	line-height: 1.75em;
-	font-size: 16px;
-	background-color: #222;
-	color: #aaa;
-  margin: 20px; 
-  height: 100%; 
+  line-height: 1.75em;
+  font-size: 16px;
+  background-color: #222;
+  color: #aaa;
+  margin: 20px;
+  height: 100%;
   overflow: hidden;
 }
 
@@ -27,9 +27,15 @@ h1 {
   margin-bottom: 20px;
 }
 
-#combinations, #left {
+#combinations,
+#left {
   height: 75vh;
   font-size: 2vh;
+}
+
+#combinations {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
 }
 
 #turn {
@@ -39,7 +45,24 @@ h1 {
 }
 
 #result {
+  padding: 50px;
   min-height: 40%;
+  font-size: 70px;
+}
+
+#result>* {
+  margin: 30px;
+}
+
+#total {
+  color: rgb(0, 175, 0)
+}
+
+#next-round {
+  position: absolute;
+  font-size: 30px;
+  padding: 25px 30px;
+  margin-top: 0;
 }
 
 #outer {
@@ -63,7 +86,7 @@ h1 {
 
 img {
   filter: invert(0.8);
-  width: 100px;
+  width: 4vw
 }
 
 .die:hover {
@@ -75,6 +98,7 @@ img {
 }
 
 .col {
+  box-sizing: border-box;
   width: 80%;
   border-radius: 20px;
   flex: 1;
@@ -91,7 +115,7 @@ img {
   flex-direction: row;
 }
 
-#roll {
+.action-button {
   display: inline-block;
   outline: none;
   cursor: pointer;
@@ -116,10 +140,11 @@ img {
   background: #363636;
 }
 
-.die-button-not-clicked, .die-button-clicked {
+.die-button-not-clicked,
+.die-button-clicked {
   max-width: 100px;
   max-width: 100px;
-  margin: 20px;
+  margin: 0.4vw;
   margin-top: 0px;
   margin-bottom: 0px;
   border: none;
@@ -144,12 +169,12 @@ tr {
 }
 
 .result-button {
-  min-height: 4vh;
+  height: 4vh;
   width: 10vb;
 }
 
 .result-button-clicked {
-  min-height: 4vh;
+  height: 4vh;
   width: 10vb;
   background-color: rgb(169, 255, 205);
 }

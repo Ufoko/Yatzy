@@ -1,4 +1,4 @@
-import { assignResult, bonus, getNextCount, getNextTurn, getResults, nextTurn, results, startUp, sum, takenThisRound, totalScore } from './gamestate.js'
+import { allTaken, assignResult, bonus, getNextCount, getNextTurn, getResults, nextTurn, results, startUp, sum, takenThisRound, totalScore } from './gamestate.js'
 import { createDice, holdDie, rollDice, getDice, getDieState, resetDice } from './yatzyLogic.js'
 
 
@@ -11,22 +11,32 @@ rollButton.onclick = () => rollTheDice()
 const roundButton = document.querySelector("#next-round")    /* Får fat i "Ny runde" Knappen*/
 roundButton.onclick = () => newTurn()
 
+const combinationDiv = document.getElementById('combinations')
 
 
-/**
- * List of options in the game
- */
+/* En liste over alle mulige point felter (Ud over bonus og Result) */
 let options = [
-    "1-s", "2-s", "3-s", "4-s", "5-s", "6-s", "One Pair", "Two Pairs",
+"1-s", "2-s", "3-s", "4-s", "5-s", "6-s", "One Pair", "Two Pairs",
     "Three Same", "Four Same", "Full House",
     "Small Staight", "Large Straight", "Chance", "Yatzy"
 ]
 
+startGame()
 
-createDice()
-setOnClick()
 
-startUp()
+/* 
+Start game tegner de nødvendige HTML elementer med de ønskedede funktioner,
+kalder startUp() på gamestate, så den kan initialisere sin results[],
+og createDice(), så nye terninger oprettes
+*/
+function startGame () {
+    drawCombinations()
+    createDice()
+    setOnClick()
+    startUp()
+    newTurn()
+}
+
 
 function setOnClick() {
     /**
@@ -54,68 +64,56 @@ function rollTheDice() {
             dieImage.outerHTML = dieString
         }
     }
-    setOnClick()
-    updateResults()
-    updateCount()
+    setOnClick() /* Vi er nødt til at kalde setOnClick igen, da vi teknisk set får lavet nye objekter*/
+    updateResults() /* Vi opdatere resultaterne til højre */
+    updateCount() /* Opdatere*/
 }
 
-const combinationDiv = document.getElementById('combinations')
 
-/* TODO Eventuelt smid det ud i to seperate koloner, så der er plads på mindre skærme. Eller reducer størrelse af både knapperne og teksten*/
-let combinations = '<table>';
-for (let i = 0; i < options.length; i++) {
-    combinations += '<tr><td>' + options[i] + ': </td><td>' + '<button id="button' + i + '"';
-    combinations += 'class="result-button">';
-    combinations += '</button>'
-    if (i == 4) {
-        combinations += '</td><td>Sum</td><td><button id="buttonSum" class="result-button"></button></td></tr>'
-    } else if (i == 5) {
-        combinations += '</td><td>Bonus</td><td><button id="buttonBonus" class="result-button"></button></td></tr>'
+function drawCombinations() {
+    combinationDiv.innerHTML = "";
+    /* Løber alle "options" igennem, for at oprette alle resultat felter og tekster */
+    for (let index = 0; index < options.length; index++) {
+        /* Tilføjer teksten*/
+        combinationDiv.innerHTML = combinationDiv.innerHTML + options[index];
+
+        /* Tilføjer knappen med scoren i*/
+        combinationDiv.innerHTML = combinationDiv.innerHTML + '<button id="button' + index + '" class="result-button"></button>'
+
+        /* Tilføjer to tomme paragrafer eller summen/bonus. */
+        if (index == 4) {
+            combinationDiv.innerHTML = combinationDiv.innerHTML + 'Sum <button id="buttonSum" class="result-button"></button>'
+        } else if (index == 5) {
+            combinationDiv.innerHTML = combinationDiv.innerHTML + 'Bonus <button id="buttonBonus" class="result-button"></button>'
+        } else {
+            combinationDiv.innerHTML = combinationDiv.innerHTML + "<p>" + "<p>"
+        }
     }
-}
 
-combinations += "</table>";
-combinationDiv.innerHTML = combinations
-
-for (let i = 0; i < options.length; i++) {
-    let resultButton = document.querySelector('#button' + i);
-    resultButton.onclick = function () {
-        let succeed = assignResult(i);
-        if (succeed) {
-            resultButton.className = "result-button-clicked";
+    /* Giver dem alle sammen en onclick funktion */
+    for (let i = 0; i < options.length; i++) {
+        let resultButton = document.querySelector('#button' + i);
+        resultButton.onclick = function () {
+            let succeed = assignResult(i);
+            if (succeed) {
+                resultButton.className = "result-button-clicked";
+            }
         }
     }
 }
 
-function updateDices() {
-    let diceArray = getDice()
-    for (let i = 0; i < diceArray.length; i++) {
-        if (i == 1) {
 
-        }
-    }
-}
-
-
-newTurn()
-
-
-function allTaken() {
-    const resultArray = results
-    let allTakenBoolean = true
-    for (let index = 0; index < resultArray.length; index++) {
-        if (!resultArray[index].taken) {
-            allTakenBoolean = false
-        }
-        
-    }
-    return allTakenBoolean
-}
-
+/* 
+Kaldes hver gang en ny tur begynder.
+Holder også øje med om vi er er færdige med hele spillet, og viser så et tilsvarende vindue
+*/
 function newTurn() {
     if (allTaken()) {
         let resultDiv = document.querySelector('#result')
-        resultDiv.innerHTML = "Game over. You got a score of: " + totalScore()
+        let text = "Du opnåede en score på " + totalScore() + "\n Vil du starte et ny spil?";
+        if (confirm(text) == true) {
+            startGame();
+          }
     } else if (takenThisRound()) {
         turnHeader.innerHTML = "Turn " + getNextTurn();
         let rollsLeft = document.querySelector("#rolls-left");
@@ -126,12 +124,13 @@ function newTurn() {
         resetDice();
         rollTheDice()
     } else {
-        alert("DU SKAL VÆLGE NOGET DIT KVA")
+        alert("Du skal vælge et resultat at gemme.")
     }
 }
 
 /*
 Opdatere "rul tilbage" counteren, ved at hente rul tilbage fra gamestate.
+Hvis der ikke er flere rul tilbage, så låses knappen
 */
 function updateCount() {
     let count = getNextCount();
