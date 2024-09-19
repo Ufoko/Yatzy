@@ -70,6 +70,7 @@ export function startUp() {
         result.taken = false
         results[index] = result
     }
+    turnCounter = 0
 }
 /**
  * Saves the given score in the index given if the given index is not already taken. 
