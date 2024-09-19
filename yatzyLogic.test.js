@@ -36,7 +36,7 @@ describe('Dice roll test', () => {
             createDice();
             rollDice();
     });
-    it('', () => {
+    it('Should not be 0 as the dice has been rolled', () => {
         for (const die of getDice()) {
          assert(die.value,!0)
         }
