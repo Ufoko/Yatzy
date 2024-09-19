@@ -109,9 +109,8 @@ Holder også øje med om vi er er færdige med hele spillet, og viser så et til
 */
 function newTurn() {
     if (allTaken()) {
-        let resultDiv = document.querySelector('#result')
         let text = "Du opnåede en score på " + totalScore() + "\n Vil du starte et ny spil?";
-        if (confirm(text) == true) {
+        if (confirm(text)) {
             startGame();
           }
     } else if (takenThisRound()) {

@@ -131,7 +131,7 @@ img {
   margin-left: 20px;
 }
 
-#roll:hover {
+.action-button:hover {
   border-color: #000000;
   background: #d7d7d7;
 }
@@ -157,15 +157,6 @@ img {
   text-align: right;
   margin-right: 40px;
   margin-bottom: 40px;
-}
-
-td {
-  min-width: 120px;
-}
-
-tr {
-  height: 20px;
-  margin: 0px;
 }
 
 .result-button {
