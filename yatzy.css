@@ -139,17 +139,17 @@ td {
 }
 
 tr {
-  height: 10px;
+  height: 20px;
   margin: 0px;
 }
 
 .result-button {
-  min-height: 2.8vh;
+  min-height: 4vh;
   width: 10vb;
 }
 
 .result-button-clicked {
-  min-height: 2.8vh;
+  min-height: 4vh;
   width: 10vb;
   background-color: rgb(169, 255, 205);
 }

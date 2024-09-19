@@ -1,6 +1,18 @@
 import { assignResult, bonus, getNextCount, getNextTurn, getResults, nextTurn, results, startUp, sum, takenThisRound, totalScore } from './gamestate.js'
 import { createDice, holdDie, rollDice, getDice, getDieState, resetDice } from './yatzyLogic.js'
 
+
+/* Gemmer nogle elementer, som vi skal bruge i løbet at spillet*/
+const turnHeader = document.querySelector("h2");
+
+const rollButton = document.querySelector("#roll")    /* Får fat i "Roll Again" Knappen*/
+rollButton.onclick = () => rollTheDice()
+
+const roundButton = document.querySelector("#next-round")    /* Får fat i "Ny runde" Knappen*/
+roundButton.onclick = () => newTurn()
+
+
+
 /**
  * List of options in the game
  */
@@ -31,12 +43,6 @@ function setOnClick() {
     dieButton3.onclick = () => holdDieGUI(3)
     dieButton4.onclick = () => holdDieGUI(4)
 }
-
-/**
- * Roll button
- */
-const rollButton = document.querySelector("#roll")
-rollButton.onclick = () => rollTheDice()
 
 function rollTheDice() {
     rollDice()
@@ -90,12 +96,9 @@ function updateDices() {
     }
 }
 
-const turnHeader = document.querySelector("h2")
 
 newTurn()
 
-const roundButton = document.querySelector("#next-round")
-roundButton.onclick = () => newTurn()
 
 function allTaken() {
     const resultArray = results
@@ -127,6 +130,9 @@ function newTurn() {
     }
 }
 
+/*
+Opdatere "rul tilbage" counteren, ved at hente rul tilbage fra gamestate.
+*/
 function updateCount() {
     let count = getNextCount();
     if (count == 1) {
@@ -136,6 +142,9 @@ function updateCount() {
     rollsLeft.innerHTML = count - 1;
 }
 
+/* 
+Opdatere alle resultaterne, ved at hente dem i gamestate, og derefter opdatere innerHTML i alle de tilsvarende elementer
+*/
 function updateResults() {
     let resultArray = getResults()
     for (let index = 0; index < resultArray.length; index++) {
@@ -146,6 +155,9 @@ function updateResults() {
 
 }
 
+/*
+Låser den givne terning nede i yatzyLogic, og giver det en ny klasse, så en ny css profil kan bruges
+*/
 function holdDieGUI(number) {
     holdDie(number)
     let dieImage = document.querySelector("#die" + number)
